@@ -22,7 +22,14 @@ class ReportsController < ApplicationController
     @memory_used = memory_in_mb
   end
 
+  def search
+    if params[:search]
+      @hits = Hit.where("match_gene_name LIKE ?", "%#{params[:search]}")
+    end
+  end
+
   private def memory_in_mb
     `ps -o rss -p #{$$}`.strip.split.last.to_i / 1024
   end
+
 end
