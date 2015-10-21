@@ -11,10 +11,12 @@ class ReportsController < ApplicationController
     @memory_used = memory_in_mb
   end
 
-  def upload_data
-
-  end  
-
+  def upload
+    # uploaded_io = params[:person][:picture]
+    # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    #   file.write(uploaded_io.read)
+    # end
+  end
 
   private def memory_in_mb
     `ps -o rss -p #{$$}`.strip.split.last.to_i / 1024
