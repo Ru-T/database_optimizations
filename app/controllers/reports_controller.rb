@@ -11,13 +11,10 @@ class ReportsController < ApplicationController
     @memory_used = memory_in_mb
   end
 
-  def search
-    if params[:search]
-      @hits = Hit.joins(gene:[:assembly]).
-      where("match_gene_name LIKE ? or assembly.name LIKE ?",
-      "%#{params[:search]}", "%#{params[:search]}")
-    end
-  end
+  def upload_data
+
+  end  
+
 
   private def memory_in_mb
     `ps -o rss -p #{$$}`.strip.split.last.to_i / 1024
