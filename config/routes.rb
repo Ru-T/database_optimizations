@@ -3,6 +3,15 @@ Rails.application.routes.draw do
   get 'reports/upload'
   post 'reports/upload'
 
+  # resources :reports do
+  #   member do
+  #     get 'reports/all_data'
+  #     get 'reports/upload'
+  #     post 'reports/upload'
+  #   end
+  #   collection {post :import}
+  # end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

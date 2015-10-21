@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
     Hit.import(params[:file])
     redirect_to reports_upload_path, notice: "Your file has been imported!"
   end
-  
+
   def upload
 
     # uploaded_io = params[:person][:picture]
