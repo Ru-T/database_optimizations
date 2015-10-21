@@ -4,7 +4,6 @@ class ReportsController < ApplicationController
   def all_data
     @start_time = Time.now
     @assembly = Assembly.find_by_name(params[:name])
-    @memory_used = memory_in_mb
 
     sequences = Sequence.where(assembly_id: @assembly.id)
     sequence_ids = sequences.map {|s| s.id}
@@ -12,7 +11,9 @@ class ReportsController < ApplicationController
     genes = Gene.where(sequence_id: sequence.ids)
     gene_ids = genes.map {|g| g.id}
 
-    @hits = Hit.where(subject_id: gene_ids).order(percent_similarity: :desc)
+    @hits = Hit.where(subject_id: gene_ids, subject_type: "Gene").order(percent_similarity: :desc)
+
+    @memory_used = memory_in_mb
   end
 
   def search
