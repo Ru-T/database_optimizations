@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'reports/all_data'
   get 'reports/upload'
   post 'reports/upload'
+  post 'reports/import'
 
   # resources :reports do
   #   member do

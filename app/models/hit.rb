@@ -3,8 +3,8 @@ require 'csv'
 class Hit < ActiveRecord::Base
   belongs_to :subject, polymorphic: true
 
-  validates :subject_id, presence: true
-  validates :subject_type, presence: true
+  # validates :subject_id, presence: true
+  # validates :subject_type, presence: true
 
   def self.export(count)
     CSV.open("tmp/data.csv", "wb") do |csv|
@@ -36,7 +36,7 @@ class Hit < ActiveRecord::Base
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       Hit.create! row.to_hash
-    end  
+    end
   end
 
 end

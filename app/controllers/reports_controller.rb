@@ -12,12 +12,15 @@ class ReportsController < ApplicationController
   end
 
   def import
-    Hit.import(params[:file])
-    redirect_to reports_upload_path, notice: "Your file has been imported!"
+    Hit.import(params[:csv])
+    redirect_to reports_upload_path, notice: "Your file has been imported"
   end
 
   def upload
+    @assembly = Assembly.find_by_name(params[:name])
 
+    @hits = Hit.where(subject: Gene.where(sequence: Sequence.where(assembly: @assembly))).
+      order(percent_similarity: :desc)
     # uploaded_io = params[:person][:picture]
     # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
     #   file.write(uploaded_io.read)
