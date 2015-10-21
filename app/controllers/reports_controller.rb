@@ -5,13 +5,8 @@ class ReportsController < ApplicationController
     @start_time = Time.now
     @assembly = Assembly.find_by_name(params[:name])
 
-    sequences = Sequence.where(assembly_id: @assembly.id)
-    sequence_ids = sequences.map {|s| s.id}
-
-    genes = Gene.where(sequence_id: sequence.ids)
-    gene_ids = genes.map {|g| g.id}
-
-    @hits = Hit.where(subject_id: gene_ids, subject_type: "Gene").order(percent_similarity: :desc)
+    @hits = Hit.where(subject: Gene.where(sequence: Sequence.where(assembly: @assembly))).
+      order(percent_similarity: :desc)
 
     @memory_used = memory_in_mb
   end
