@@ -12,8 +12,9 @@ class ReportsController < ApplicationController
   end
 
   def import
-    Hit.import(params[:csv])
-    redirect_to reports_upload_path, notice: "Your file has been imported"
+    @hits = Hit.import(params[:csv])
+    UploadCsvJob.perform_later(params[:csv])
+    # redirect_to reports_upload_path, notice: "Your file has been imported"
   end
 
   def upload
