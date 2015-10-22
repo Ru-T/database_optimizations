@@ -21,10 +21,6 @@ class ReportsController < ApplicationController
 
     @hits = Hit.where(subject: Gene.where(sequence: Sequence.where(assembly: @assembly))).
       order(percent_similarity: :desc)
-    # uploaded_io = params[:person][:picture]
-    # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-    #   file.write(uploaded_io.read)
-    # end
   end
 
   private def memory_in_mb
