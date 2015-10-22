@@ -1,2 +1,2 @@
 match_gene_name,match_gene_dna,percent_similarity,subject_id,subject_type
-FakeName,ATAKKKGGGG,1,2452,Gene
+NewName,ATAKKKGGGG,1,2452,Gene

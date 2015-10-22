@@ -20,6 +20,6 @@
 
   <%= form_tag reports_import_path, multipart: true do %>
     <label for="file">CSV to Upload</label>
-    <p><%= file_field_tag "csv" %></p>
+    <p><%= file_field_tag "file" %></p>
     <p><%= submit_tag %></p>
   <% end %>
